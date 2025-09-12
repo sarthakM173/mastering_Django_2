@@ -1,0 +1,17 @@
+# Virtual environment
+store2/
+
+# .env file containing sensitive data
+.env
+
+# Database file
+db.sqlite3
+
+# Python cache files
+__pycache__/
+
+# IDE or editor files
+.vscode/
+
+# Other files to exclude (if necessary)
+data.sql
