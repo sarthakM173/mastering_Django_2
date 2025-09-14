@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'playground',
     'debug_toolbar',
     'storeE',
@@ -96,7 +97,7 @@ load_dotenv()
 DATABASES = {
     'default': {
         'ENGINE': 'mssql',
-        'NAME': 'LStore', # The name of your database in SSMS
+        'NAME': 'LSTORE2', # The name of your database in SSMS
         'USER': os.getenv('DB_User'),     # Your SQL Server login username
         'PASSWORD': os.getenv('DB_PASSWORD'), # Your SQL Server login password
         'HOST':  os.getenv('DB_HOST'),   # e.g., 'localhost' or a server IP
@@ -148,3 +149,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+REST_FRAMEWORK = {
+        'COERCE_DECIMAL_TO_STRING':False  #decimal will be con to str in api response
+}

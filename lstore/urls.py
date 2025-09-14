@@ -23,12 +23,13 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 #admin.site.site_header = 'LStore Admin'
 
 admin.site.site_header = 'LStore Admin'
-
 admin.site.index_title='Admin'
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #addind url path
-    path('playground/',include('playground.urls'))
+    path('playground/',include('playground.urls')),
+    path('storeE/',include('storeE.urls')),
+    path('storeE/',include('storeE.urls'))
 ]+ debug_toolbar_urls()
