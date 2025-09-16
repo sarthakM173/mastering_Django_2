@@ -1,6 +1,14 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 
+
+class Review(models.Model):
+    product=models.ForeignKey('Product',on_delete=models.CASCADE,related_name='reviewss')
+    name=models.CharField(max_length=255)
+    description=models.TextField()
+    date=models.DateField(auto_now_add=True)
+ 
+
 class Promotion(models.Model):
     description=models.CharField(max_length=255)
     discount=models.FloatField()
@@ -16,10 +24,7 @@ class Collection(models.Model):
     def __str__(self) ->str:
         #return super().__str__() #default implementation
         return self.title
-    
-    class Meta:
-        ordering = ['title']  #to define ordering 
-    
+        
 class Product(models.Model):
     #sku=models.CharField(max_length=10,primary_key=True)
     title=models.CharField(max_length=255)
@@ -30,7 +35,7 @@ class Product(models.Model):
         validators=[MinValueValidator(1,message='pls select valid value')])
     inventory=models.IntegerField()
     last_update=models.DateTimeField(auto_now=True)
-    collection=models.ForeignKey(Collection,on_delete=models.PROTECT)
+    collection=models.ForeignKey(Collection,on_delete=models.PROTECT,related_name='Productt')
     promotions=models.ManyToManyField(Promotion,related_name='Productz',blank=True)
 
     def __str__(self):

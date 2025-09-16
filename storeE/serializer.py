@@ -1,16 +1,26 @@
 from rest_framework import serializers
-from .models import Product,Collection
+from .models import Product,Collection,Review
 from decimal import Decimal
 
 
-class CollectionSerializer(serializers.ModelSerializer):
+class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
-         model=Collection
-         fields=['id','title']
+          model=Review
+          fields=['id','name','description','date']
 
+    def create(self,validated_data):
+          product_id=self.context['product_id']
+          return Review.objects.create(product_id=product_id,**validated_data)
 
-    def cal_tax(self,product: Product):
-        return product.unit_price * Decimal(1.1)
+class CollectionSerializer(serializers.ModelSerializer):
+    total_products=serializers.IntegerField(read_only=True)  
+    #total_products=serializers.SerializerMethodField(method_name='getC')
+    class Meta:
+        model=Collection
+        fields=['id','title','total_products','featured_product']
+
+    #def getC(self,collection:Collection):
+     #    return collection.Productt.count()
     
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:

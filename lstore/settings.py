@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'storeE',
     'tags',
     'store_custom',
-    'likes'
-
+    'likes',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -152,5 +152,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 REST_FRAMEWORK = {
-        'COERCE_DECIMAL_TO_STRING':False  #decimal will be con to str in api response
+        'COERCE_DECIMAL_TO_STRING':False,  #decimal will be con to str in api response
+        #'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination', # will create pagination for classes
+       # 'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
+
+
+
